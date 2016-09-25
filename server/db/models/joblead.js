@@ -17,10 +17,10 @@ var JobLead = db.define('jobLead', {
     placeName: {
         type: Sequelize.STRING
     },
-    lat: {
+    latitude: {
         type: Sequelize.FLOAT
     },
-    long: {
+    longitude: {
         type: Sequelize.FLOAT
     }
 // }, {

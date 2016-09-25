@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 var path = require('path');
 var chalk = require('chalk');
 var server = require('http').createServer();
+const router = require('express').Router();
 
 app.use(express.static(path.join('public')));
 app.use(express.static(path.join('browser')));
@@ -18,6 +19,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(morgan('dev'));
+
+app.use('/api', require('./routes'));
+// app.use('/jobleads', require('./routes/tweets'));
+
 
 // Plug in twitter stream
 require('./routes/tweets');
@@ -38,7 +43,7 @@ var startServer = function () {
 
 };
 
-db.sync({force: true})
+db.sync()
 .then(createApplication)
 .then(startServer)
 .catch(function (err) {

@@ -1,10 +1,13 @@
 'use strict';
 
-angular.module('jobMap', ['uiGmapgoogle-maps'])
-    .config(function(uiGmapGoogleMapApiProvider) {
-        uiGmapGoogleMapApiProvider.configure({
-            key: 'AIzaSyBpErvJt8z0AXm09iQxERL6VywGV25yNwo',
-            v: '3.26',
-            libraries: 'places,visualization'
-        });
-    });
+var app = angular.module('app', ['uiGmapgoogle-maps', 'nemLogging']);
+
+app.run(function ($rootScope) {
+  $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
+    console.error('Error transitioning from "' + fromState.name + '" to "' + toState.name + '":', error);
+  });
+});
+
+
+
+
