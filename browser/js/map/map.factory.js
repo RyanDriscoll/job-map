@@ -12,5 +12,9 @@ app.factory('MapFactory', function($http) {
 		.then(getData);
 	};
 
+	// MapFactory.purge = function(id) {
+
+	// }
+
 	return MapFactory;
 });

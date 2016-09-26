@@ -16,36 +16,34 @@ router.get('/', function(req, res, next) {
 });
 
 // Posting Twitter job leads to the database
-var Twitter = new Twit(secret);
- // (-124.848974, 24.396308) - (-66.885444, 49.384358)
-var usa = [ '-124.848974', '24.396308', '-66.885444', '49.384358' ];
+// var Twitter = new Twit(secret);
 
-var stream = Twitter.stream('statuses/filter', {track: 'packers'});
+// var usa = [ '-124.848974', '24.396308', '-66.885444', '49.384358' ];
 
-stream.on('tweet', function (tweet) {
-	// console.log("$$$$$$$$$$$$$$$$", tweet);
-	var newTweet = {};
-	if (tweet.place) {
-		// console.log(chalk.blue('SAMPLE>>>>>>>>>>>'), tweet);
-		// console.log(chalk.blue('<<<<<<<<<<<<<<<<<<<<<<\n'), tweet.place.bounding_box.coordinates);
-		newTweet.userName = tweet.user.screen_name;
-		newTweet.createdAt = tweet.created_at;
-		newTweet.content = tweet.text;
-		newTweet.placeName = tweet.place.full_name;
-		newTweet.latitude = tweet.place.bounding_box.coordinates[0][0][1];
-		newTweet.longitude = tweet.place.bounding_box.coordinates[0][0][0];
-		// console.log("!!!!!!!!!!!!!!!", newTweet.lat, newTweet.long);
-		JobLead.create(newTweet)
-		.then(function(createdTweet) {
-			console.log(chalk.blue('<<<<<<<<<<<<<<<<<<<<<<\n'), createdTweet.userName, createdTweet.content, createdTweet.placeName, createdTweet.latitude, createdTweet.longitude);
-		})
-		.catch();
-	}
-});
+// var stream = Twitter.stream('statuses/filter', {track: 'packers'});
 
-module.exports = router;
+// stream.on('tweet', function (tweet) {
+// 	// console.log("$$$$$$$$$$$$$$$$", tweet);
+// 	var newTweet = {};
+// 	if (tweet.place) {
+// 		newTweet.userName = tweet.user.screen_name;
+// 		newTweet.createdAt = tweet.created_at;
+// 		newTweet.content = tweet.text;
+// 		newTweet.placeName = tweet.place.full_name;
+// 		newTweet.latitude = tweet.place.bounding_box.coordinates[0][0][1];
+// 		newTweet.longitude = tweet.place.bounding_box.coordinates[0][0][0];
+// 		JobLead.create(newTweet)
+// 		.then(function(createdTweet) {
+// 			console.log(chalk.blue('<<<<<<<<<<<<<<<<<<<<<<\n'), createdTweet.userName, createdTweet.content, createdTweet.placeName, createdTweet.latitude, createdTweet.longitude);
+// 		})
+// 		.catch();
+// 	}
+// });
 
 // to find archived tweets
-// T.get('search/tweets', {q: '#sassafras since:2016-09-21', count: 100 }, function(err, data, response) {
-//   console.log(data.statuses[1].place.bounding_box.coordinates)
+// Twitter.get('search/tweets', {q: '#sassafras since:2016-09-01', count: 100 }, function(err, data, response) {
+//   console.log('tweets seeded', data);
+//   JobLead.create()
 // })
+module.exports = router;
+
