@@ -43,7 +43,7 @@ var startServer = function () {
 
 };
 
-db.sync()
+db.sync({force: true})
 .then(createApplication)
 .then(startServer)
 .catch(function (err) {
