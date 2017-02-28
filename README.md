@@ -1,6 +1,6 @@
 # TWork
 
-### Use twitter to find and share job leads in your community
+### Use Twitter and Google maps to find and share job leads in your community
 
 ## About
  - Built for a hackathon project with the idea of helping students with disabilities find employment
